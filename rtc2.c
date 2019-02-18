@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
 #include <linux/rtc.h>
@@ -22,12 +24,13 @@ int main( int argc, char *argv[]){
 /*
  * Leer fecha y hora del RTC 
  */
+	errno = 0;
   	if ((fd = open("/dev/rtc", O_RDONLY, S_IREAD)) < 0){
-		printf("Error: no se puede abrir /dev/rtc\n");
+		printf("Error: no se puede abrir /dev/rtc: %s\n", strerror(errno));
 		return -1;
 	} else {
 		if ((ioctl(fd, RTC_RD_TIME, &tm)) != 0){
-			printf("Error: ioctl sobre /dev/rtc\n");
+			printf("Error: ioctl sobre /dev/rtc: %s\n", strerror(errno));
 			close(fd);
 			return -1;
 		} else {
