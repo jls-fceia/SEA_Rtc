@@ -44,7 +44,7 @@ int main( int argc, char *argv[]){
  */
 	
 	if (ioctl(fd, RTC_IRQP_READ, &irq_frec) != 0){
-		printf("Error: ioctl sobre /dev/rtc\n");
+		printf("Error: ioctl sobre /dev/rtc: %s\n", strerror(errno));
 		close(fd);		
 		return -1;
 	} else
