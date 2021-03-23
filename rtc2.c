@@ -20,7 +20,7 @@ int main( int argc, char *argv[]){
     int fd;
     struct rtc_time tm;
 
-	printf("\nAcceso al dispositivo RTC via API ioctl()\n");
+	printf("\nAcceso al dispositivo RTC via API ioctl() Fecha/hora e IRQ\n");
 /*
  * Leer fecha y hora del RTC 
  */
